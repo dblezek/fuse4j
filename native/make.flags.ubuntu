@@ -1,0 +1,16 @@
+FUSE_HOME=/usr/local
+JAVA_HOME=/usr/lib/jvm/java-6-sun/
+
+INCLUDES=-I${JAVA_HOME}/include -I${JAVA_HOME}/include/linux -I${FUSE_HOME}/include
+LDPATH=-L${JAVA_HOME}/jre/lib/i386/server -L${FUSE_HOME}/lib
+
+LIB_SO=libjavafs.so
+FS_EXE=javafs
+
+CC=gcc
+# DEPFLAGS=-D__FreeBSD__=10 -D_FILE_OFFSET_BITS=64
+DEPFLAGS= -D_FILE_OFFSET_BITS=64
+CFLAGS=-Wall -fPIC ${DEPFLAGS}
+LD=gcc -shared
+LDFLAGS=-ljvm -lfuse -lpthread
+
